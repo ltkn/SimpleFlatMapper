@@ -29,7 +29,7 @@ public class AsmUtils {
 	public static final int API;
 	static {
 		//IFJAVA8_START
-		if (true) API = Opcodes.ASM7_EXPERIMENTAL; else
+		if (true) API = Opcodes.ASM9; else
 			//IFJAVA8_END
 			API = Opcodes.ASM5;
 	}

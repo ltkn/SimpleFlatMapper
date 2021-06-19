@@ -2,6 +2,7 @@ package org.simpleflatmapper.poi.impl;
 
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.simpleflatmapper.map.getter.ContextualGetterFactory;
@@ -105,7 +106,7 @@ public class DynamicSheetMapper<T> implements SheetMapper<T> {
         List<CsvColumnKey> keys = new ArrayList<CsvColumnKey>(row.getLastCellNum() - row.getFirstCellNum());
         for(short i = row.getFirstCellNum(); i <= row.getLastCellNum(); i++) {
             Cell cell = row.getCell(i);
-            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+            if (cell != null && cell.getCellType() != CellType.BLANK) {
                 keys.add(new CsvColumnKey(cell.getStringCellValue(), i));
             }
         }

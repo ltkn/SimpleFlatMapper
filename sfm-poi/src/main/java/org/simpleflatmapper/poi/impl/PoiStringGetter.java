@@ -24,12 +24,12 @@ public class PoiStringGetter implements Getter<Row, String> {
     public String get(Row target) throws Exception {
         final Cell cell = target.getCell(index);
         if (cell != null) {
-            switch(cell.getCellType()) {
-                case Cell.CELL_TYPE_BOOLEAN:
-                case Cell.CELL_TYPE_NUMERIC:
+            switch (cell.getCellType()) {
+                case BOOLEAN:
+                case NUMERIC:
                     return formatCell(cell);
                 default:
-                return cell.getStringCellValue();
+                    return cell.getStringCellValue();
             }
         } else {
             return null;

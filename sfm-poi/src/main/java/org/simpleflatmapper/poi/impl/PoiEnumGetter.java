@@ -9,6 +9,7 @@ public class PoiEnumGetter<E extends Enum<E>> implements Getter<Row, E> {
     private final int index;
     private final Class<E> enumClass;
     private final E[] values;
+
     public PoiEnumGetter(int index, Class<E> enumClass) {
         this.index = index;
         this.enumClass = enumClass;
@@ -20,9 +21,12 @@ public class PoiEnumGetter<E extends Enum<E>> implements Getter<Row, E> {
         final Cell cell = target.getCell(index);
         if (cell != null) {
             switch (cell.getCellType()) {
-                case Cell.CELL_TYPE_BLANK : return null;
-                case Cell.CELL_TYPE_STRING : return Enum.valueOf(enumClass, cell.getStringCellValue());
-                case Cell.CELL_TYPE_NUMERIC : return values[(int)cell.getNumericCellValue()];
+                case BLANK:
+                    return null;
+                case STRING:
+                    return Enum.valueOf(enumClass, cell.getStringCellValue());
+                case NUMERIC:
+                    return values[(int) cell.getNumericCellValue()];
                 default:
                     throw new UnsupportedOperationException("Cannot convert cell to enum");
             }
